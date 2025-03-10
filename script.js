@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentSlide = 0;
     let slideInterval;
     let isPlaying = false;
-    let isMusicPlaying = true;
+    let isMusicPlaying = false;
     const animationDelay = 4000; // Time each slide is shown in ms
 
     // Initialize the slideshow
@@ -159,41 +159,19 @@ document.addEventListener('DOMContentLoaded', function() {
         isPlaying = !isPlaying;
     }
 
-    // Initialize music
-    function initializeMusic() {
-        // Set initial button state
-        musicToggle.classList.add('playing');
-        musicToggle.querySelector('span').textContent = 'Pause Music';
-        musicToggle.querySelector('i').classList.remove('fa-music');
-        musicToggle.querySelector('i').classList.add('fa-pause');
-
-        // Try to play music automatically
-        backgroundMusic.play().catch(error => {
-            console.log('Auto-play prevented by browser:', error);
-            // If autoplay is prevented, show a message to the user
-            alert('Please click anywhere on the page to start the music');
-            
-            // Add a one-time click handler to the document to start playing
-            document.addEventListener('click', function startMusic() {
-                backgroundMusic.play();
-                document.removeEventListener('click', startMusic);
-            }, { once: true });
-        });
-    }
-
-    // Toggle music function now only handles pausing
+    // Simple music toggle function
     function toggleMusic() {
         if (isMusicPlaying) {
             backgroundMusic.pause();
             musicToggle.classList.remove('playing');
-            musicToggle.querySelector('span').textContent = 'Resume Music';
+            musicToggle.querySelector('span').textContent = 'Play Music';
             musicToggle.querySelector('i').classList.remove('fa-pause');
-            musicToggle.querySelector('i').classList.add('fa-play');
+            musicToggle.querySelector('i').classList.add('fa-music');
         } else {
             backgroundMusic.play();
             musicToggle.classList.add('playing');
             musicToggle.querySelector('span').textContent = 'Pause Music';
-            musicToggle.querySelector('i').classList.remove('fa-play');
+            musicToggle.querySelector('i').classList.remove('fa-music');
             musicToggle.querySelector('i').classList.add('fa-pause');
         }
         isMusicPlaying = !isMusicPlaying;
@@ -230,7 +208,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize
     initializeSlideshow();
-    initializeMusic();
     
     // Auto-start slideshow
     toggleAutoPlay();
