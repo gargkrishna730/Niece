@@ -1,0 +1,76 @@
+# Adding Your Baby Photos to the Gallery
+
+Follow these steps to replace the placeholder images with your actual baby photos:
+
+## Option 1: Simplest Method (Recommended)
+
+1. Create a folder called "photos" in the same directory as the index.html file
+2. Add your baby photos to this folder
+3. Rename your photos to follow a simple numbering pattern, like:
+   - photo1.jpg
+   - photo2.jpg
+   - photo3.jpg
+   - ... and so on
+4. Open the script.js file in a text editor
+5. Find the imageData array (near the top of the file)
+6. Replace the placeholder URLs with your photo filenames:
+
+```javascript
+const imageData = [
+    {
+        src: 'photos/photo1.jpg',
+        caption: 'Welcome to the world, little angel!'
+    },
+    {
+        src: 'photos/photo2.jpg',
+        caption: 'First family photo'
+    },
+    // Continue for all your photos
+];
+```
+
+7. Edit the caption text for each photo to describe the moment
+
+## Option 2: Using Online Images
+
+If you already have your baby photos stored online (like Google Photos, Flickr, or other photo hosting):
+
+1. Get the direct URL to each photo (usually by right-clicking on the photo and selecting "Copy Image Address")
+2. Open the script.js file in a text editor
+3. Find the imageData array (near the top of the file) 
+4. Replace the placeholder URLs with your direct photo URLs:
+
+```javascript
+const imageData = [
+    {
+        src: 'https://your-photo-hosting.com/direct-link-to-photo1.jpg',
+        caption: 'Welcome to the world, little angel!'
+    },
+    // Continue for all your photos
+];
+```
+
+## Photo Preparation Tips
+
+For best results:
+- Use photos with similar dimensions (ideally landscape orientation)
+- Optimize your photos for web (compress them to reduce file size)
+- Aim for a file size of 200KB-1MB per photo
+- Common formats that work well: JPG, PNG, WEBP
+- Consider using a free tool like TinyPNG.com to optimize your images
+
+## Adding Many Photos
+
+If you have many photos (20+), consider:
+1. Adding them in batches
+2. Testing the gallery after each batch to ensure it loads properly
+3. Further compressing images to maintain fast loading times
+
+## Changing the Slideshow Timing
+
+By default, each photo displays for 4 seconds. To change this:
+1. Open script.js
+2. Find the line: `const animationDelay = 4000;`
+3. Change 4000 to your preferred time in milliseconds (1000 = 1 second)
+
+Enjoy your personalized baby photo gallery! 

@@ -1,0 +1,345 @@
+/* Global Styles & Variables */
+:root {
+    --primary-color: #ff9fb5;
+    --secondary-color: #a5d8f3;
+    --accent-color: #f3c5ff;
+    --text-color: #4a4a4a;
+    --light-color: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.4s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    color: var(--text-color);
+    min-height: 100vh;
+    padding: 2rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="3" fill="white" opacity="0.3"/></svg>');
+    background-repeat: repeat;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Typography */
+h1, h2, h3 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.gallery-title {
+    font-size: 3rem;
+    text-align: center;
+    color: var(--light-color);
+    text-shadow: 2px 2px 4px var(--shadow-color);
+    animation: fadeInDown 1.5s ease-out;
+    margin-bottom: 0.5rem;
+}
+
+.gallery-subtitle {
+    font-size: 1.2rem;
+    text-align: center;
+    color: var(--light-color);
+    margin-bottom: 2rem;
+    font-style: italic;
+    animation: fadeInUp 1.5s ease-out;
+}
+
+/* Layout */
+header {
+    margin-bottom: 2rem;
+    padding: 1rem;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 0.9rem;
+    color: var(--light-color);
+    margin-top: 2rem;
+}
+
+footer i {
+    color: #ff6b6b;
+}
+
+/* Gallery Styles */
+.gallery-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 2rem;
+    animation: fadeIn 1s ease-out;
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.slideshow-container {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+#slideshow {
+    width: 100%;
+    height: 60vh;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity var(--transition-speed) ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* Animation entries */
+.slide.animate-in {
+    animation: slideIn 1s forwards;
+}
+
+.slide.animate-out {
+    animation: slideOut 1s forwards;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.controls button {
+    background-color: var(--light-color);
+    color: var(--primary-color);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.controls button:hover {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    transform: translateY(-3px);
+}
+
+.controls button:active {
+    transform: translateY(0);
+}
+
+/* Thumbnails */
+.thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.thumbnail {
+    width: 100px;
+    height: 70px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+.thumbnail:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.thumbnail.active {
+    border-color: var(--primary-color);
+    opacity: 1;
+}
+
+/* Caption */
+.caption-container {
+    height: 50px;
+    padding: 1rem;
+    text-align: center;
+    color: var(--text-color);
+    font-style: italic;
+}
+
+/* Music Control */
+.music-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+#music-toggle {
+    background-color: var(--light-color);
+    color: var(--primary-color);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+#music-toggle:hover {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    transform: translateY(-3px);
+}
+
+#music-toggle:active {
+    transform: translateY(0);
+}
+
+#music-toggle.playing {
+    background-color: var(--accent-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) rotate(-5deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+    to {
+        opacity: 0;
+        transform: scale(1.2) rotate(5deg);
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    
+    .gallery-title {
+        font-size: 2rem;
+    }
+    
+    .gallery-container {
+        padding: 1rem;
+    }
+    
+    #slideshow {
+        height: 40vh;
+    }
+    
+    .thumbnail {
+        width: 80px;
+        height: 60px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .gallery-title {
+        font-size: 1.5rem;
+    }
+    
+    .controls button {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .thumbnail {
+        width: 60px;
+        height: 45px;
+    }
+} 

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Photo Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="overlay"></div>
+    
+    <div class="music-control">
+        <button id="music-toggle" class="playing">
+            <i class="fas fa-pause"></i>
+            <span>Pause Music</span>
+        </button>
+        <audio id="background-music" loop>
+            <source src="lullaby.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <header>
+        <h1 class="gallery-title">Little Angel's Memories</h1>
+        <p class="gallery-subtitle">A collection of precious moments</p>
+    </header>
+    
+    <main>
+        <div class="gallery-container">
+            <div class="slideshow-container">
+                <div class="controls">
+                    <button id="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button id="auto-play"><i class="fas fa-play"></i></button>
+                    <button id="next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                
+                <div id="slideshow">
+                    <!-- Images will be loaded here dynamically -->
+                </div>
+                
+                <div class="caption-container">
+                    <p id="caption"></p>
+                </div>
+            </div>
+            
+            <div class="thumbnails" id="thumbnail-container">
+                <!-- Thumbnails will be loaded here dynamically -->
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>Made with <i class="fas fa-heart"></i> for my sister and niece</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html> 

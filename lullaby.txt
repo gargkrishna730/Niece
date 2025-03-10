@@ -1,0 +1,30 @@
+# Finding a Lullaby for the Baby Photo Gallery
+
+To add background music to the gallery, you'll need to download or create a suitable lullaby MP3 file.
+
+## Options for finding free lullaby music:
+
+1. **Free Music Archive**: Visit https://freemusicarchive.org/ and search for "lullaby" or "baby music"
+
+2. **YouTube Audio Library**: If you have a YouTube account, access the free Audio Library in YouTube Studio
+
+3. **Pixabay Music**: Visit https://pixabay.com/music/ and search for "lullaby" or "gentle"
+
+4. **Epidemic Sound**: They offer a free trial with access to high-quality music
+
+## Steps to add the music to your gallery:
+
+1. Download your chosen lullaby MP3
+2. Rename it to "lullaby.mp3" 
+3. Place it in the same folder as the index.html file
+4. The music should now work with the play/pause button
+
+## Music selection tips:
+
+- Choose something gentle and slow
+- Instrumental tracks work best (no lyrics)
+- Look for longer tracks (3+ minutes) or ones that loop well
+- Consider traditional lullabies like "Brahms' Lullaby" or "Twinkle Twinkle Little Star"
+- Make sure the volume is not too loud
+
+Remember that browsers require user interaction before playing audio automatically. The user will need to click something on the page before the music can start playing. 

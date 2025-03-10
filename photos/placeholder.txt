@@ -1,0 +1,5 @@
+This is a placeholder file for the photos directory.
+
+You should replace this file with your actual baby photos.
+
+See the photo-instructions.txt file in the main directory for detailed instructions on how to add your photos to this gallery. 
