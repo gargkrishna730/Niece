@@ -3,47 +3,103 @@ document.addEventListener('DOMContentLoaded', function() {
     const imageData = [
         {
             src: 'photos/photo1.jpeg',
-            caption: 'Welcome to the world, little angel!'
+            caption: 'Welcome to the world, little angel!',
+            type: 'image'
         },
         {
             src: 'photos/photo2.jpeg',
-            caption: 'Growing with love and joy'
+            caption: 'Growing with love and joy',
+            type: 'image'
         },
         {
             src: 'photos/photo3.jpeg',
-            caption: 'Precious moments with our little one'
+            caption: 'Precious moments with our little one',
+            type: 'image'
         },
         {
             src: 'photos/photo4.jpeg',
-            caption: 'Sweet baby smiles'
+            caption: 'Sweet baby smiles',
+            type: 'image'
         },
         {
             src: 'photos/photo5.jpeg',
-            caption: 'Every day brings new adventures'
+            caption: 'Every day brings new adventures',
+            type: 'image'
         },
         {
             src: 'photos/photo6.jpeg',
-            caption: 'Tiny hands, big love'
+            caption: 'Tiny hands, big love',
+            type: 'image'
         },
         {
             src: 'photos/photo7.jpeg',
-            caption: 'Bundle of happiness'
+            caption: 'Bundle of happiness',
+            type: 'image'
         },
         {
             src: 'photos/photo8.jpeg',
-            caption: 'Our little treasure'
+            caption: 'Our little treasure',
+            type: 'image'
         },
         {
             src: 'photos/photo9.jpeg',
-            caption: 'Pure joy and innocence'
+            caption: 'Pure joy and innocence',
+            type: 'image'
         },
         {
             src: 'photos/photo10.jpeg',
-            caption: 'Making beautiful memories'
+            caption: 'Making beautiful memories',
+            type: 'image'
         },
         {
             src: 'photos/photo11.jpeg',
-            caption: 'Our little blessing'
+            caption: 'Our little blessing',
+            type: 'image'
+        },
+        {
+            src: 'videos/video1.mp4',
+            caption: 'Precious moments captured on video',
+            type: 'video'
+        },
+        {
+            src: 'photos/photo12.jpeg',
+            caption: 'A new addition to the family',
+            type: 'image'
+        },
+        {
+            src: 'photos/photo13.jpeg',
+            caption: 'Growing bigger every day',
+            type: 'image'
+        },
+        {
+            src: 'photos/photo14.jpeg',
+            caption: 'Sweetest dreams',
+            type: 'image'
+        },
+        {
+            src: 'photos/photo15.jpeg',
+            caption: 'Playful moments',
+            type: 'image'
+        },
+        {
+            src: 'photos/photo16.jpeg',
+            caption: 'Full of wonder',
+            type: 'image'
+        },
+        {
+            src: 'videos/video2.mp4',
+            caption: 'More precious moments',
+            type: 'video'
+        },
+        {
+            src: 'photos/photo17.jpeg',
+            caption: 'Another sweet memory',
+            type: 'image'
+        },
+        {
+            src: 'videos/video3.mp4',
+            caption: 'New video added',
+            type: 'video'
         }
     ];
 
@@ -67,26 +123,54 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize the slideshow
     function initializeSlideshow() {
         // Create slides
-        imageData.forEach((image, index) => {
+        imageData.forEach((media, index) => {
             const slide = document.createElement('div');
             slide.className = 'slide';
             if (index === 0) slide.classList.add('active');
             
-            const img = document.createElement('img');
-            img.src = image.src;
-            img.alt = image.caption;
-            img.loading = 'lazy';
+            if (media.type === 'video') {
+                const video = document.createElement('video');
+                video.src = media.src;
+                video.controls = true;
+                video.className = 'media-content';
+                video.playsInline = true;
+                video.muted = true; // Start muted for autoplay
+                slide.appendChild(video);
+            } else {
+                const img = document.createElement('img');
+                img.src = media.src;
+                img.alt = media.caption;
+                img.loading = 'lazy';
+                img.className = 'media-content';
+                slide.appendChild(img);
+            }
             
-            slide.appendChild(img);
             slideshow.appendChild(slide);
             
             // Create thumbnails
-            const thumbnail = document.createElement('img');
-            thumbnail.src = image.src;
-            thumbnail.alt = 'Thumbnail';
+            const thumbnail = document.createElement('div'); // Use div as a container
             thumbnail.className = 'thumbnail';
             if (index === 0) thumbnail.classList.add('active');
             
+            // Conditionally create img or video for thumbnail content
+            let thumbnailContent;
+            if (media.type === 'video') {
+                thumbnailContent = document.createElement('video');
+                thumbnailContent.src = media.src;
+                thumbnailContent.muted = true; // Mute for thumbnail preview
+                thumbnailContent.playsInline = true; // Play inline on iOS
+                thumbnailContent.loop = true; // Loop for continuous preview
+                thumbnailContent.preload = 'metadata'; // Load metadata only
+                thumbnailContent.autoplay = true; // Autoplay for preview
+            } else {
+                thumbnailContent = document.createElement('img');
+                thumbnailContent.src = media.src;
+                thumbnailContent.alt = 'Thumbnail';
+                thumbnailContent.loading = 'lazy';
+            }
+            thumbnailContent.className = 'thumbnail-content'; // Add a common class
+            thumbnail.appendChild(thumbnailContent);
+
             thumbnail.addEventListener('click', () => {
                 goToSlide(index);
                 resetInterval();
@@ -100,8 +184,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Go to specific slide
     function goToSlide(index) {
-        // Remove active class from current slide and add to new slide
+        // Pause current video if it exists
         const slides = document.querySelectorAll('.slide');
+        const currentVideo = slides[currentSlide].querySelector('video');
+        if (currentVideo) {
+            currentVideo.pause();
+        }
+
+        // Remove active class from current slide and add to new slide
         const thumbnails = document.querySelectorAll('.thumbnail');
         
         slides[currentSlide].classList.remove('active', 'animate-in');
@@ -117,6 +207,24 @@ document.addEventListener('DOMContentLoaded', function() {
             thumbnails[currentSlide].classList.add('active');
             
             updateCaption();
+
+            // If the new slide is a video, handle playback
+            const newSlideVideo = slides[currentSlide].querySelector('video');
+            if (newSlideVideo) {
+                clearInterval(slideInterval); // Stop auto-advance for video
+                if (isPlaying) { // Only play if auto-play was active
+                    newSlideVideo.play();
+                }
+                newSlideVideo.onended = () => {
+                    if (isPlaying) { // Resume auto-play after video ends, if it was active
+                        nextSlide();
+                        resetInterval();
+                    }
+                };
+            } else if (isPlaying) { // If it's an image and auto-play is active, restart interval
+                resetInterval();
+            }
+
         }, 500); // Half of animation duration
     }
 
@@ -139,21 +247,41 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 10);
     }
 
-    // Reset interval when manually changing slides
+    // Reset interval when manually changing slides or video ends
     function resetInterval() {
+        // Pause current video if any before resetting interval
+        const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+        const currentVideo = currentSlideElement.querySelector('video');
+        if (currentVideo) {
+            currentVideo.pause();
+        }
+
         if (isPlaying) {
             clearInterval(slideInterval);
-            slideInterval = setInterval(nextSlide, animationDelay);
+            // Only set interval if the current slide is not a video
+            if (imageData[currentSlide].type !== 'video') {
+                slideInterval = setInterval(nextSlide, animationDelay);
+            }
         }
     }
 
     // Toggle slideshow auto-play
     function toggleAutoPlay() {
+        const currentSlideElement = document.querySelectorAll('.slide')[currentSlide];
+        const currentVideo = currentSlideElement.querySelector('video');
+
         if (isPlaying) {
             clearInterval(slideInterval);
+            if (currentVideo) {
+                currentVideo.pause();
+            }
             autoPlayBtn.innerHTML = '<i class="fas fa-play"></i>';
         } else {
-            slideInterval = setInterval(nextSlide, animationDelay);
+            if (currentVideo) {
+                currentVideo.play();
+            } else {
+                slideInterval = setInterval(nextSlide, animationDelay);
+            }
             autoPlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
         }
         isPlaying = !isPlaying;
