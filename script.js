@@ -98,7 +98,42 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             src: 'videos/video3.mp4',
-            caption: 'New video added',
+            caption: 'Joyful video',
+            type: 'video'
+        },
+        {
+            src: 'photos/photo18.jpeg',
+            caption: 'Joyful moments',
+            type: 'image'
+        },
+        {
+            src: 'photos/photo19.jpeg',
+            caption: 'Little explorer',
+            type: 'image'
+        },
+        {
+            src: 'photos/photo20.jpeg',
+            caption: 'Sweet dreams',
+            type: 'image'
+        },
+        {
+            src: 'photos/photo21.jpeg',
+            caption: 'Happy times',
+            type: 'image'
+        },
+        {
+            src: 'photos/photo22.jpeg',
+            caption: 'Growing up fast',
+            type: 'image'
+        },
+        {
+            src: 'photos/photo23.jpeg',
+            caption: 'Cherished memories',
+            type: 'image'
+        },
+        {
+            src: 'videos/video4.mp4',
+            caption: 'Another memorable video',
             type: 'video'
         }
     ];
