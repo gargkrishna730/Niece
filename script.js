@@ -102,6 +102,16 @@ document.addEventListener('DOMContentLoaded', function() {
             type: 'video'
         },
         {
+            src: 'videos/video5.mp4',
+            caption: 'First bike ride',
+            type: 'video'
+        },
+        {
+            src: 'videos/video6.mp4',
+            caption: 'Daydreaming',
+            type: 'video'
+        },
+        {
             src: 'photos/photo18.jpeg',
             caption: 'Joyful moments',
             type: 'image'
@@ -135,6 +145,11 @@ document.addEventListener('DOMContentLoaded', function() {
             src: 'videos/video4.mp4',
             caption: 'Another memorable video',
             type: 'video'
+        },
+        {
+            src: 'photos/photo24.jpeg',
+            caption: 'Cutest Bhakt',
+            type: 'image'
         }
     ];
 
