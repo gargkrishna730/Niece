@@ -150,7 +150,26 @@ document.addEventListener('DOMContentLoaded', function() {
             src: 'photos/photo24.jpeg',
             caption: 'Cutest Bhakt',
             type: 'image'
-        }
+        },
+        { src: 'photos/photo25.jpeg', caption: 'Soaking up the sun', type: 'image' },
+        { src: 'photos/photo26.jpeg', caption: 'Our little star', type: 'image' },
+        { src: 'photos/photo27.jpeg', caption: 'Chubby cheeks and sweet smiles', type: 'image' },
+        { src: 'photos/photo28.jpeg', caption: 'A heart full of love', type: 'image' },
+        { src: 'photos/photo29.jpeg', caption: 'Dream big, little one', type: 'image' },
+        { src: 'photos/photo30.jpeg', caption: 'My sunshine on a cloudy day', type: 'image' },
+        { src: 'photos/photo31.jpeg', caption: 'Little moments, big memories', type: 'image' },
+        { src: 'photos/photo32.jpeg', caption: 'So small, so loved', type: 'image' },
+        { src: 'photos/photo33.jpeg', caption: 'The world is yours', type: 'image' },
+        { src: 'photos/photo34.jpeg', caption: 'Perfect in every way', type: 'image' },
+        { src: 'photos/photo35.jpeg', caption: 'Our greatest adventure', type: 'image' },
+        { src: 'photos/photo36.jpeg', caption: 'Innocence and wonder', type: 'image' },
+        { src: 'photos/photo37.jpeg', caption: 'Wrapped in love', type: 'image' },
+        { src: 'photos/photo38.jpeg', caption: 'A little bit of heaven', type: 'image' },
+        { src: 'photos/photo39.jpeg', caption: 'You are so loved', type: 'image' },
+        { src: 'videos/video7.mp4', caption: 'Fun times on the move', type: 'video' },
+        { src: 'videos/video8.mp4', caption: 'Giggles and wiggles', type: 'video' },
+        { src: 'videos/video9.mp4', caption: 'Another day, another adventure', type: 'video' },
+        { src: 'videos/video10.mp4', caption: 'Capturing the magic', type: 'video' }
     ];
 
     // Elements
